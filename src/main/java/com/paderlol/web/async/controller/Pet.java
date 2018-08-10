@@ -6,14 +6,14 @@ import java.io.Serializable;
 public class Pet implements Serializable {
 
     private Integer ownerId;
+
     private String petId;
 
-
-
-    @ConstructorProperties({"ownerId", "petId"})
+    @ConstructorProperties({ "ownerId", "petId" })
     public Pet(Integer ownerId, String petId) {
         this.ownerId = ownerId;
         this.petId = petId;
+
     }
 
     public Integer getOwnerId() {
@@ -34,6 +34,7 @@ public class Pet implements Serializable {
 
     @Override
     public String toString() {
+
         return "Pet{" +
                 "ownerId=" + ownerId +
                 ", petId='" + petId + '\'' +

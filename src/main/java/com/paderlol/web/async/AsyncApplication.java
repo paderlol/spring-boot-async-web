@@ -1,5 +1,6 @@
 package com.paderlol.web.async;
 
+import com.paderlol.web.async.controller.Pet;
 import com.paderlol.web.async.service.AccountService;
 import com.paderlol.web.async.service.CalculateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,20 @@ public class AsyncApplication implements CommandLineRunner {
     @Autowired
     private CalculateService calculateService;
 
+    @Autowired
+    private Pet pet;
+
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(AsyncApplication.class).web(WebApplicationType.REACTIVE)
                 .run(args);
 //        SpringApplication.run(AsyncApplication.class, args);
+
     }
 
     @Override
     public void run(String... args) throws Exception {
         calculateService.sum(1,2,3,4,5,6,7,8,9,10);
+        System.out.println(pet);
     }
 }

@@ -19,14 +19,15 @@ public class ServletAsyncController {
 
     private static final ExecutorService threadPool = Executors.newCachedThreadPool();
 
+
     @GetMapping(value = "/fetch-value/{field}", produces = "application/stream+json")
     public DeferredResult<String> fetchValue(@PathVariable("field") Optional<String> field) {
         field.ifPresent(value -> log.info("测试参数Optional {}", value));
         DeferredResult<String> deferredResult = new DeferredResult(10L);
         log.info("主线程接收请求");
-
         CompletableFuture.supplyAsync(() -> {
             log.info("副线程接收请求");
+
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
@@ -35,6 +36,7 @@ public class ServletAsyncController {
             return "fetch-value-servlet";
         }, threadPool).whenCompleteAsync((result, throwable) -> deferredResult.setResult(result));
         log.info("Servlet thread released");
+
         return deferredResult;
     }
 }

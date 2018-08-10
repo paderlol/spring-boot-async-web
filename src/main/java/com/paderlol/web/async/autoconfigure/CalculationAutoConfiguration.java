@@ -9,15 +9,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClas
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ConditionalOnSystemProperty(name = "jdkVersion", value = "jdkVersion")
 @EnableCalculation
 public class CalculationAutoConfiguration {
 
 
-    @Bean
-    public Pet pet() {
-        return new Pet(1, "2");
-    }
+
 
 }
